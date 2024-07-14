@@ -60,9 +60,13 @@ class PriceCard extends StatelessWidget {
           ClipPath(
             clipper: MyCustomClipper(),
             // ignore: sized_box_for_whitespace
-            child: Image(
-              image: NetworkImage(img),
-              fit: BoxFit.cover,
+            child: SizedBox(
+              width: 150.0,
+              height: 110.0,
+              child: Image(
+                image: AssetImage('images/$img.jpeg'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ],
