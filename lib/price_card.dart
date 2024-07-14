@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PriceCard extends StatelessWidget {
-  const PriceCard({super.key, required this.img});
+  const PriceCard(
+      {super.key, required this.img, required this.name, required this.price});
 
   final String img;
+  final String name;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +21,48 @@ class PriceCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-                // Left white space
-                ),
-          ),
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 12.0),
+                  ),
+                  Expanded(
+                    child: Text(
+                      //name of the vegetable
+                      name,
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '₹ $price',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                      color: Color.fromARGB(255, 4, 205, 14),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          )),
           ClipPath(
             clipper: MyCustomClipper(),
             // ignore: sized_box_for_whitespace
-            child: Container(
-              width: 150.0,
-              height: 110.0,
-              child: Image(
-                image: NetworkImage(img),
-                fit: BoxFit.cover,
-              ),
+            child: Image(
+              image: NetworkImage(img),
+              fit: BoxFit.cover,
             ),
           ),
         ],
