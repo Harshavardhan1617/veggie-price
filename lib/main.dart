@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,13 +30,30 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.green,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           PriceCard(),
           PriceCard(),
         ],
       ),
     );
   }
+}
+
+class MyCustomClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path()
+      // Add line p1p2
+      ..lineTo(size.width / 2, size.height)
+      ..lineTo(size.width, size.height) // Add line p2p3
+      ..lineTo(size.width, 0)
+      ..close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 class PriceCard extends StatelessWidget {
@@ -49,6 +67,18 @@ class PriceCard extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0), color: Colors.white),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          ClipPath(
+            clipper: MyCustomClipper(),
+            child: Container(
+              width: 150.0,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
