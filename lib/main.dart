@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import 'price_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,51 +32,9 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          PriceCard(),
-          PriceCard(),
-        ],
-      ),
-    );
-  }
-}
-
-class MyCustomClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path()
-      // Add line p1p2
-      ..lineTo(size.width / 2, size.height)
-      ..lineTo(size.width, size.height) // Add line p2p3
-      ..lineTo(size.width, 0)
-      ..close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
-class PriceCard extends StatelessWidget {
-  const PriceCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 6.0),
-      height: 110.0,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0), color: Colors.white),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          ClipPath(
-            clipper: MyCustomClipper(),
-            child: Container(
-              width: 150.0,
-              color: Colors.red,
-            ),
+          PriceCard(
+            img:
+                'https://cdn.pixabay.com/photo/2022/09/05/09/50/tomatoes-7433786_1280.jpg',
           ),
         ],
       ),
