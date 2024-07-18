@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'veg_list.dart';
 import 'price_card.dart';
 
 void main() {
@@ -29,20 +28,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red,
-      body: ListView.builder(
-        itemCount: veggies.length, // Get the number of items from the map
-        itemBuilder: (context, index) {
-          final vegetableName =
-              veggies.keys.toList()[index]; // Get vegetable name
-          final vegetableData =
-              veggies[vegetableName]; // Get data for the vegetable
-          return PriceCard(
-            name: vegetableName,
-            price: vegetableData?['price'] ?? '',
-            img: vegetableData?['imageUrl'] ?? '',
-          );
-        },
-      ),
+      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        PriceCard(img: 'tomato', name: 'Tomato', price: '70'),
+      ]),
     );
   }
 }
